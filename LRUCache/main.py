@@ -14,7 +14,6 @@ class LRUCache:
 
         self.head = Node()
         self.tail = Node()
-
         self.head.next = self.tail
         self.tail.prev = self.head
 
@@ -23,8 +22,7 @@ class LRUCache:
             return -1
 
         node = self.cache[key]
-
-        # Mark as most recently used.
+        # Mark as most recently used
         self._remove(node)
         self._add_to_back(node)
 
@@ -34,8 +32,7 @@ class LRUCache:
         if key in self.cache:
             node = self.cache[key]
             node.value = value
-
-            # Updated key becomes most recently used.
+            # Updated key becomes most recently used
             self._remove(node)
             self._add_to_back(node)
             return
@@ -61,7 +58,6 @@ class LRUCache:
 
         last.next = node
         node.prev = last
-
         node.next = self.tail
         self.tail.prev = node
         
@@ -80,3 +76,4 @@ if __name__=="__main__":
     assert cache.get(1)==-1 # returns -1
     assert cache.get(3)==3 # returns 3
     assert cache.get(4)==4 # returns 4
+    print('All tests passed.')
